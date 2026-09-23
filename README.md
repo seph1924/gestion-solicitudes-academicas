@@ -5,7 +5,7 @@
 **Docente:** WILDER JULIO ESPINOZA BRAVO · **Fecha:** 22 DE SEPTIEMBRE 2026
 
 **Video público de YouTube:** https://www.youtube.com/watch?v=9sY_BqzZnpw
-
+**Capturas de pantalla de solución: https://drive.google.com/drive/folders/1-oZWopQ94TOUHaV6HZl7bC8OWf-NwUzW?usp=sharing
 ---
 
 ## Integrantes y participación
