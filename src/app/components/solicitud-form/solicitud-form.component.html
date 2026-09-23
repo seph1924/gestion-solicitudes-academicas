@@ -1,72 +1,96 @@
-<section class="formulario">
-  <header class="formulario__header">
-    <h2>Registrar nueva solicitud</h2>
-    <a class="enlace" routerLink="/solicitudes">Ver solicitudes</a>
-  </header>
+<section class="panel-tramite">
+  <div class="panel-header">
+    <div>
+      <h2 class="titulo-seccion">Registro de Solicitud</h2>
+      <p class="subtitulo-seccion">Complete los campos requeridos para iniciar el trámite académico.</p>
+    </div>
+    <a class="btn-retorno" routerLink="/solicitudes">← Volver al listado</a>
+  </div>
 
-  <p class="alerta alerta--exito" *ngIf="mensajeExito">{{ mensajeExito }}</p>
+  <div class="mensaje-alerta exito" *ngIf="mensajeExito">
+    <strong>Registro procesado:</strong> {{ mensajeExito }}
+  </div>
 
-  <form [formGroup]="formulario" (ngSubmit)="registrar()" novalidate>
-    <div class="campo">
-      <label for="nombreEstudiante">Nombre completo *</label>
-      <input id="nombreEstudiante" type="text" formControlName="nombreEstudiante"
-             placeholder="Ej. Maria Fernanda Rojas" />
-      <small class="error" *ngIf="invalido('nombreEstudiante')">
-        <span *ngIf="f['nombreEstudiante'].errors?.['required']">El nombre es obligatorio.</span>
-        <span *ngIf="f['nombreEstudiante'].errors?.['minlength']">
-          El nombre debe tener al menos 3 caracteres.
+  <form [formGroup]="formulario" (ngSubmit)="registrar()" novalidate class="formulario-grid">
+    
+    <!-- Fila 1: Datos del alumno -->
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="nombreEstudiante">Estudiante (Nombres y Apellidos) <span class="obligatorio">*</span></label>
+        <input 
+          id="nombreEstudiante" 
+          type="text" 
+          formControlName="nombreEstudiante"
+          placeholder="Ingrese su nombre completo" 
+        />
+        <span class="txt-error" *ngIf="invalido('nombreEstudiante')">
+          <ng-container *ngIf="f['nombreEstudiante'].errors?.['required']">Indique sus nombres y apellidos.</ng-container>
+          <ng-container *ngIf="f['nombreEstudiante'].errors?.['minlength']">Mínimo 3 caracteres requeridos.</ng-container>
         </span>
-      </small>
-    </div>
+      </div>
 
-    <div class="campo">
-      <label for="codigoEstudiante">Codigo de estudiante *</label>
-      <input id="codigoEstudiante" type="text" formControlName="codigoEstudiante"
-             placeholder="Ej. I20231001" />
-      <small class="error" *ngIf="invalido('codigoEstudiante')">
-        <span *ngIf="f['codigoEstudiante'].errors?.['required']">El codigo es obligatorio.</span>
-        <span *ngIf="f['codigoEstudiante'].errors?.['codigoInvalido']">
-          Formato invalido: una letra opcional seguida de 6 a 10 digitos.
+      <div class="campo">
+        <label for="codigoEstudiante">Código de Matrícula <span class="obligatorio">*</span></label>
+        <input 
+          id="codigoEstudiante" 
+          type="text" 
+          formControlName="codigoEstudiante"
+          placeholder="Ej. i20231001" 
+        />
+        <span class="txt-error" *ngIf="invalido('codigoEstudiante')">
+          <ng-container *ngIf="f['codigoEstudiante'].errors?.['required']">El código es un campo obligatorio.</ng-container>
+          <ng-container *ngIf="f['codigoEstudiante'].errors?.['codigoInvalido']">Formato no válido (debe contener entre 6 y 10 dígitos).</ng-container>
         </span>
-      </small>
+      </div>
     </div>
 
-    <div class="campo">
-      <label for="correoEstudiante">Correo electronico *</label>
-      <input id="correoEstudiante" type="email" formControlName="correoEstudiante"
-             placeholder="nombre@universidad.edu.pe" />
-      <small class="error" *ngIf="invalido('correoEstudiante')">
-        <span *ngIf="f['correoEstudiante'].errors?.['required']">El correo es obligatorio.</span>
-        <span *ngIf="f['correoEstudiante'].errors?.['email']">El formato del correo no es valido.</span>
-      </small>
-    </div>
-
-    <div class="campo">
-      <label for="tipoSolicitud">Tipo de solicitud *</label>
-      <select id="tipoSolicitud" formControlName="tipoSolicitud">
-        <option value="">Seleccione un tipo</option>
-        <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
-      </select>
-      <small class="error" *ngIf="invalido('tipoSolicitud')">
-        Debe seleccionar un tipo de solicitud.
-      </small>
-    </div>
-
-    <div class="campo">
-      <label for="motivo">Motivo *</label>
-      <textarea id="motivo" rows="4" formControlName="motivo"
-                placeholder="Explique brevemente el motivo de su solicitud"></textarea>
-      <small class="error" *ngIf="invalido('motivo')">
-        <span *ngIf="f['motivo'].errors?.['required']">El motivo es obligatorio.</span>
-        <span *ngIf="f['motivo'].errors?.['minlength']">
-          El motivo debe tener al menos {{ minimoMotivo }} caracteres.
+    <!-- Fila 2: Correo y Tipo -->
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="correoEstudiante">Correo Institucional <span class="obligatorio">*</span></label>
+        <input 
+          id="correoEstudiante" 
+          type="email" 
+          formControlName="correoEstudiante"
+          placeholder="usuario@isil.pe" 
+        />
+        <span class="txt-error" *ngIf="invalido('correoEstudiante')">
+          <ng-container *ngIf="f['correoEstudiante'].errors?.['required']">Debe ingresar una dirección de correo.</ng-container>
+          <ng-container *ngIf="f['correoEstudiante'].errors?.['email']">Ingrese una dirección electrónica válida.</ng-container>
         </span>
-      </small>
+      </div>
+
+      <div class="campo">
+        <label for="tipoSolicitud">Tipo de Trámite <span class="obligatorio">*</span></label>
+        <select id="tipoSolicitud" formControlName="tipoSolicitud">
+          <option value="">-- Seleccione una opción --</option>
+          <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+        </select>
+        <span class="txt-error" *ngIf="invalido('tipoSolicitud')">
+          Seleccione el tipo de trámite correspondiente.
+        </span>
+      </div>
     </div>
 
-    <div class="acciones">
-      <button class="boton boton--primario" type="submit">Registrar solicitud</button>
-      <button class="boton" type="button" (click)="limpiar()">Limpiar</button>
+    <!-- Fila 3: Motivo / Justificación -->
+    <div class="campo fila-completa">
+      <label for="motivo">Sustento o Justificación del Trámite <span class="obligatorio">*</span></label>
+      <textarea 
+        id="motivo" 
+        rows="4" 
+        formControlName="motivo"
+        placeholder="Describa de forma concisa los motivos y detalles de su solicitud..."></textarea>
+      <span class="txt-error" *ngIf="invalido('motivo')">
+        <ng-container *ngIf="f['motivo'].errors?.['required']">La justificación es obligatoria.</ng-container>
+        <ng-container *ngIf="f['motivo'].errors?.['minlength']">Mínimo {{ minimoMotivo }} caracteres de descripción.</ng-container>
+      </span>
     </div>
+
+    <!-- Acciones -->
+    <div class="barra-botones fila-completa">
+      <button class="btn btn-primario" type="submit">Generar Solicitud</button>
+      <button class="btn btn-secundario" type="button" (click)="limpiar()">Descartar Cambios</button>
+    </div>
+
   </form>
 </section>
