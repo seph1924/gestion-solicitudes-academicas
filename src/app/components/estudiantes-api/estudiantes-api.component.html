@@ -1,0 +1,55 @@
+<section class="remotas">
+  <header class="remotas__header">
+    <div>
+      <h2>Solicitudes obtenidas de la API externa</h2>
+      <p class="remotas__subtitulo">
+        Fuente: <code>https://jsonplaceholder.typicode.com/users</code> — API publica, sin credenciales.
+        Cada registro se mapea al modelo <code>SolicitudAcademica</code> del caso.
+      </p>
+    </div>
+    <button class="boton" type="button" (click)="cargar()" [disabled]="cargando">Recargar</button>
+  </header>
+
+  <p class="alerta alerta--info" *ngIf="cargando">Cargando datos...</p>
+  <p class="alerta alerta--error" *ngIf="error">{{ error }}</p>
+
+  <div *ngIf="!cargando && !error">
+    <p class="remotas__conteo">
+      {{ solicitudes.length }} solicitudes recibidas · {{ totalAprobadas }} aprobadas
+    </p>
+
+    <div class="tabla-scroll">
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Estudiante</th>
+            <th>Codigo</th>
+            <th>Correo</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let solicitud of solicitudes">
+            <td>{{ solicitud.id }}</td>
+            <td>{{ solicitud.nombreEstudiante }}</td>
+            <td>{{ solicitud.codigoEstudiante }}</td>
+            <td>{{ solicitud.correoEstudiante }}</td>
+            <td>{{ solicitud.tipoSolicitud }}</td>
+            <td>{{ fecha(solicitud) }}</td>
+            <td>
+              <span class="estado" [ngClass]="clase(solicitud.estado)">
+                {{ etiqueta(solicitud.estado) }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="solicitudes.length === 0">
+            <td colspan="7" class="vacio">La API no devolvio registros.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
