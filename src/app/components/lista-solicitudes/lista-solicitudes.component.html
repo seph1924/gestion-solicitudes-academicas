@@ -1,38 +1,45 @@
-<div style="padding: 2rem; max-width: 1100px; margin: 0 auto;">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-    <h2>Listado de Solicitudes Académicas</h2>
-    <a routerLink="/nueva-solicitud" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px; font-weight: bold;">
+<section class="panel-modulo">
+  <div class="panel-header">
+    <div>
+      <h2 class="titulo-seccion">Bandeja de Trámites Académicos</h2>
+      <p class="subtitulo-seccion">Registro general de solicitudes emitidas por los estudiantes.</p>
+    </div>
+    <a routerLink="/nueva-solicitud" class="btn-nuevo">
       + Nueva Solicitud
     </a>
   </div>
 
-  <table style="width: 100%; border-collapse: collapse; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-    <thead>
-      <tr style="background-color: #f1f5f9; text-align: left;">
-        <th style="padding: 0.75rem; border-bottom: 2px solid #cbd5e1;">ID</th>
-        <th style="padding: 0.75rem; border-bottom: 2px solid #cbd5e1;">Código</th>
-        <th style="padding: 0.75rem; border-bottom: 2px solid #cbd5e1;">Estudiante</th>
-        <th style="padding: 0.75rem; border-bottom: 2px solid #cbd5e1;">Tipo de Solicitud</th>
-        <th style="padding: 0.75rem; border-bottom: 2px solid #cbd5e1;">Fecha</th>
-        <th style="padding: 0.75rem; border-bottom: 2px solid #cbd5e1;">Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let solicitud of solicitudes" style="border-bottom: 1px solid #e2e8f0;">
-        <td style="padding: 0.75rem;">{{ solicitud.id }}</td>
-        <td style="padding: 0.75rem;">{{ solicitud.codigoEstudiante }}</td>
-        <td style="padding: 0.75rem;">{{ solicitud.nombreEstudiante }}</td>
-        <td style="padding: 0.75rem;">{{ solicitud.tipoSolicitud }}</td>
-        <td style="padding: 0.75rem;">{{ solicitud.fechaCreacion }}</td>
-        <td style="padding: 0.75rem;">
-          <span style="padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold; background-color: #e0f2fe; color: #0369a1;">
-            {{ solicitud.estado }}
-          </span>
-        </td>
-      </tr>
-      <tr *ngInIf="solicitudes.length === 0">
-        <td colspan="6" style="padding: 1rem; text-align: center; color: #64748b;">No hay solicitudes registradas.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="contenedor-tabla">
+    <table class="tabla-tramites">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Código</th>
+          <th>Estudiante</th>
+          <th>Tipo de Trámite</th>
+          <th>Fecha Registro</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let solicitud of solicitudes">
+          <td class="col-id">#{{ solicitud.id }}</td>
+          <td class="col-codigo">{{ solicitud.codigoEstudiante }}</td>
+          <td class="col-estudiante">{{ solicitud.nombreEstudiante }}</td>
+          <td>{{ solicitud.tipoSolicitud }}</td>
+          <td class="col-fecha">{{ solicitud.fechaCreacion }}</td>
+          <td>
+            <span class="badge" [ngClass]="solicitud.estado.toLowerCase().replace(' ', '-')">
+              {{ solicitud.estado }}
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="solicitudes.length === 0">
+          <td colspan="6" class="fila-vacia">
+            No se registran trámites académicos en la bandeja.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,166 @@
+/* Contenedor institucional coherente con el formulario */
+.panel-modulo {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 1.75rem 2rem;
+  max-width: 1050px;
+  margin: 1.5rem auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Cabecera idéntica a la de registro */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #0f172a;
+}
+
+.titulo-seccion {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.subtitulo-seccion {
+  margin: 0;
+  font-size: 0.825rem;
+  color: #64748b;
+}
+
+/* Botón de acción principal */
+.btn-nuevo {
+  background-color: #0f172a;
+  color: #ffffff;
+  font-size: 0.825rem;
+  font-weight: 600;
+  padding: 0.55rem 1.15rem;
+  text-decoration: none;
+  border-radius: 3px;
+  border: 1px solid #0f172a;
+  display: inline-block;
+  transition: background-color 0.15s ease;
+}
+
+.btn-nuevo:hover {
+  background-color: #1e293b;
+}
+
+/* Tabla estructurada estilo intranet */
+.contenedor-tabla {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 3px;
+}
+
+.tabla-tramites {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.tabla-tramites thead tr {
+  background-color: #f8fafc;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.tabla-tramites th {
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tabla-tramites tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.1s ease;
+}
+
+.tabla-tramites tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.tabla-tramites td {
+  padding: 0.75rem 1rem;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.col-id {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.col-codigo {
+  font-family: ui-monospace, monospace;
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 0.825rem;
+}
+
+.col-estudiante {
+  font-weight: 500;
+}
+
+.col-fecha {
+  color: #64748b;
+  font-size: 0.825rem;
+}
+
+/* Badges de estado discretos y planos */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+/* Colores condicionales según el estado */
+.badge.en_proceso,
+.badge.en-proceso {
+  background-color: #fef9c3;
+  color: #854d0e;
+  border-color: #fde047;
+}
+
+.badge.aprobado {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #86efac;
+}
+
+.badge.rechazado {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+.badge.pendiente {
+  background-color: #e0f2fe;
+  color: #075985;
+  border-color: #bae6fd;
+}
+
+/* Estado vacío */
+.fila-vacia {
+  text-align: center;
+  padding: 2.5rem 1rem !important;
+  color: #64748b;
+  font-style: italic;
+}
