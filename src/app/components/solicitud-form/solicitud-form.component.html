@@ -1,0 +1,72 @@
+<section class="formulario">
+  <header class="formulario__header">
+    <h2>Registrar nueva solicitud</h2>
+    <a class="enlace" routerLink="/solicitudes">Ver solicitudes</a>
+  </header>
+
+  <p class="alerta alerta--exito" *ngIf="mensajeExito">{{ mensajeExito }}</p>
+
+  <form [formGroup]="formulario" (ngSubmit)="registrar()" novalidate>
+    <div class="campo">
+      <label for="nombreEstudiante">Nombre completo *</label>
+      <input id="nombreEstudiante" type="text" formControlName="nombreEstudiante"
+             placeholder="Ej. Maria Fernanda Rojas" />
+      <small class="error" *ngIf="invalido('nombreEstudiante')">
+        <span *ngIf="f['nombreEstudiante'].errors?.['required']">El nombre es obligatorio.</span>
+        <span *ngIf="f['nombreEstudiante'].errors?.['minlength']">
+          El nombre debe tener al menos 3 caracteres.
+        </span>
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="codigoEstudiante">Codigo de estudiante *</label>
+      <input id="codigoEstudiante" type="text" formControlName="codigoEstudiante"
+             placeholder="Ej. I20231001" />
+      <small class="error" *ngIf="invalido('codigoEstudiante')">
+        <span *ngIf="f['codigoEstudiante'].errors?.['required']">El codigo es obligatorio.</span>
+        <span *ngIf="f['codigoEstudiante'].errors?.['codigoInvalido']">
+          Formato invalido: una letra opcional seguida de 6 a 10 digitos.
+        </span>
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="correoEstudiante">Correo electronico *</label>
+      <input id="correoEstudiante" type="email" formControlName="correoEstudiante"
+             placeholder="nombre@universidad.edu.pe" />
+      <small class="error" *ngIf="invalido('correoEstudiante')">
+        <span *ngIf="f['correoEstudiante'].errors?.['required']">El correo es obligatorio.</span>
+        <span *ngIf="f['correoEstudiante'].errors?.['email']">El formato del correo no es valido.</span>
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="tipoSolicitud">Tipo de solicitud *</label>
+      <select id="tipoSolicitud" formControlName="tipoSolicitud">
+        <option value="">Seleccione un tipo</option>
+        <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+      </select>
+      <small class="error" *ngIf="invalido('tipoSolicitud')">
+        Debe seleccionar un tipo de solicitud.
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="motivo">Motivo *</label>
+      <textarea id="motivo" rows="4" formControlName="motivo"
+                placeholder="Explique brevemente el motivo de su solicitud"></textarea>
+      <small class="error" *ngIf="invalido('motivo')">
+        <span *ngIf="f['motivo'].errors?.['required']">El motivo es obligatorio.</span>
+        <span *ngIf="f['motivo'].errors?.['minlength']">
+          El motivo debe tener al menos {{ minimoMotivo }} caracteres.
+        </span>
+      </small>
+    </div>
+
+    <div class="acciones">
+      <button class="boton boton--primario" type="submit">Registrar solicitud</button>
+      <button class="boton" type="button" (click)="limpiar()">Limpiar</button>
+    </div>
+  </form>
+</section>

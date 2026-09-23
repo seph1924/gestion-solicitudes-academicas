@@ -18,6 +18,9 @@ export interface SolicitudAcademica {
   id: number;
   codigoEstudiante: string;
   nombreEstudiante: string;
+  // Opcional: lo registra el formulario de la Actividad 3 para contactar al estudiante.
+  // Es opcional para no invalidar las solicitudes ya creadas sin este dato.
+  correoEstudiante?: string;
   tipoSolicitud: TipoSolicitud;
   motivo: string;
   fechaCreacion: string;

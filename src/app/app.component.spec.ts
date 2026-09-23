@@ -20,10 +20,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('gestion-solicitudes-academicas');
   });
 
-  it('should render title', () => {
+  it('should render the navbar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('gestion-solicitudes-academicas app is running!');
+    expect(compiled.querySelector('app-navbar')).toBeTruthy();
   });
 });
