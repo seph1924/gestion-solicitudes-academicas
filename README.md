@@ -15,7 +15,7 @@
 | 1 | Josep Palacios | Configuración del repositorio y modelos | Setup del proyecto Angular y definición inicial de `models/solicitud.model.ts` |
 | 2 | Danny Posadas (`dposadas08`) | Arquitectura de componentes | Actividad 2: `SolicitudService`, `ListaSolicitudesComponent` y `NavbarComponent` |
 | 3 | Samuel Pacheco | Base tipada, formularios y API REST | Actividad 1: `utils/`; Actividad 3: `SolicitudFormComponent` y rutas; Actividad 4: `SolicitudApiService` y `EstudiantesApiComponent` |
-| 4 | [COMPLETAR] | [COMPLETAR] | [COMPLETAR] |
+| 4 | [Juan Cáceres] | [Búsqueda y filtrado de solicitudes] | [Desarrollo de un componente Angular independiente para buscar solicitudes por nombre o código y filtrarlas por estado, utilizando data binding, directivas, TypeScript/ES6+ y RouterModule.] |
 | 5 | [COMPLETAR] | [COMPLETAR] | [COMPLETAR] |
 
 Todos los integrantes conocen la solución completa y participaron en la revisión final.

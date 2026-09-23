@@ -1,0 +1,124 @@
+<div class="contenedor-filtro">
+
+  <div class="encabezado">
+    <h1>Buscar y filtrar solicitudes</h1>
+    <p>Consulta las solicitudes académicas por nombre, código o estado.</p>
+  </div>
+
+  <div class="panel-filtros">
+
+    <div class="campo">
+      <label for="busqueda">Buscar solicitud</label>
+
+      <input
+        id="busqueda"
+        type="text"
+        [(ngModel)]="textoBusqueda"
+        (input)="filtrar()"
+        placeholder="Nombre o código del estudiante"
+      >
+    </div>
+
+    <div class="campo">
+      <label for="estado">Filtrar por estado</label>
+
+      <select
+        id="estado"
+        [(ngModel)]="estadoSeleccionado"
+        (change)="filtrar()"
+      >
+        <option value="">Todos los estados</option>
+
+        <option
+          *ngFor="let estado of estados"
+          [value]="estado"
+        >
+          {{ estado }}
+        </option>
+      </select>
+    </div>
+
+    <div class="acciones">
+      <button
+        type="button"
+        class="btn-limpiar"
+        (click)="limpiar()"
+      >
+        Limpiar filtros
+      </button>
+    </div>
+
+  </div>
+
+  <div class="resultado">
+
+    <div class="resultado-header">
+      <h2>Solicitudes encontradas</h2>
+
+      <span class="contador">
+        {{ solicitudesFiltradas.length }}
+      </span>
+    </div>
+
+    <div
+      class="tabla-contenedor"
+      *ngIf="solicitudesFiltradas.length > 0"
+    >
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Estudiante</th>
+            <th>Tipo de solicitud</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let solicitud of solicitudesFiltradas">
+
+            <td>{{ solicitud.id }}</td>
+
+            <td>
+              <strong>{{ solicitud.codigoEstudiante }}</strong>
+            </td>
+
+            <td>{{ solicitud.nombreEstudiante }}</td>
+
+            <td>{{ solicitud.tipoSolicitud }}</td>
+
+            <td>
+              <span
+                class="estado"
+                [class.aprobado]="solicitud.estado === 'APROBADO'"
+                [class.proceso]="solicitud.estado === 'EN_PROCESO'"
+                [class.pendiente]="solicitud.estado === 'PENDIENTE'"
+                [class.rechazado]="solicitud.estado === 'RECHAZADO'"
+              >
+                {{ solicitud.estado }}
+              </span>
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div
+      class="sin-resultados"
+      *ngIf="solicitudesFiltradas.length === 0"
+    >
+      <h3>No se encontraron solicitudes</h3>
+      <p>Intenta cambiar los criterios de búsqueda o limpiar los filtros.</p>
+    </div>
+
+  </div>
+
+</div>

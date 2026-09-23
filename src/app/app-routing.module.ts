@@ -5,6 +5,7 @@ import { EstudiantesApiComponent } from './components/estudiantes-api/estudiante
 import { ListaSolicitudesComponent } from './components/lista-solicitudes/lista-solicitudes.component';
 import { SolicitudFormComponent } from './components/solicitud-form/solicitud-form.component';
 
+import { FiltroSolicitudesComponent } from './components/filtro-solicitudes/filtro-solicitudes.component';
 // Actividad 3: rutas configuradas con RouterModule.
 // Los nombres coinciden con los enlaces del NavbarComponent.
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'solicitudes', component: ListaSolicitudesComponent },
   { path: 'nueva-solicitud', component: SolicitudFormComponent },
   { path: 'estudiantes-api', component: EstudiantesApiComponent },
+  { path: 'filtro-solicitudes', component: FiltroSolicitudesComponent },
   { path: '**', redirectTo: 'solicitudes' }
 ];
 

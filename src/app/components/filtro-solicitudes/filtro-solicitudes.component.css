@@ -1,0 +1,228 @@
+.contenedor-filtro {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 25px 50px;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+  margin-bottom: 25px;
+}
+
+.encabezado h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  color: #0f172a;
+}
+
+.encabezado p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* PANEL DE FILTROS */
+
+.panel-filtros {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 20px;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #334155;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  outline: none;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* BOTÓN */
+
+.acciones {
+  display: flex;
+  align-items: center;
+}
+
+.btn-limpiar {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #64748b;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-limpiar:hover {
+  background: #475569;
+}
+
+/* RESULTADOS */
+
+.resultado {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.resultado-header {
+  padding: 20px 25px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.resultado-header h2 {
+  margin: 0;
+  font-size: 19px;
+  color: #0f172a;
+}
+
+.contador {
+  background: #2563eb;
+  color: white;
+  min-width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* TABLA */
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 700;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+td {
+  padding: 15px 18px;
+  font-size: 14px;
+  color: #334155;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ESTADOS */
+
+.estado {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.estado.aprobado {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.estado.proceso {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.estado.pendiente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.estado.rechazado {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* SIN RESULTADOS */
+
+.sin-resultados {
+  padding: 45px 20px;
+  text-align: center;
+}
+
+.sin-resultados h3 {
+  margin: 0 0 8px;
+  color: #334155;
+}
+
+.sin-resultados p {
+  margin: 0;
+  color: #64748b;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .panel-filtros {
+    grid-template-columns: 1fr;
+  }
+
+  .acciones {
+    width: 100%;
+  }
+
+  .btn-limpiar {
+    width: 100%;
+  }
+
+  .contenedor-filtro {
+    margin: 25px auto;
+  }
+}
