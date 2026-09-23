@@ -16,7 +16,7 @@
 | 2 | Danny Posadas (`dposadas08`) | Arquitectura de componentes | Actividad 2: `SolicitudService`, `ListaSolicitudesComponent` y `NavbarComponent` |
 | 3 | Samuel Pacheco | Base tipada, formularios y API REST | Actividad 1: `utils/`; Actividad 3: `SolicitudFormComponent` y rutas; Actividad 4: `SolicitudApiService` y `EstudiantesApiComponent` |
 | 4 | [Juan Cáceres] | [Búsqueda y filtrado de solicitudes] | [Desarrollo de un componente Angular independiente para buscar solicitudes por nombre o código y filtrarlas por estado, utilizando data binding, directivas, TypeScript/ES6+ y RouterModule.] |
-| 5 | [COMPLETAR] | [COMPLETAR] | [COMPLETAR] |
+| 5 | Miguel Villafuerte | Diseño de Interfaz y Maquetación Frontend | Refactorización de vistas de usuario (`ListaSolicitudesComponent` y `SolicitudFormComponent`), modularización de estilos en archivos CSS desacoplados, maquetación del formulario en grid a dos columnas y binding dinámico de clases con `[ngClass]`. |
 
 Todos los integrantes conocen la solución completa y participaron en la revisión final.
 
