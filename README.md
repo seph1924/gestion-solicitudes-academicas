@@ -2,7 +2,7 @@
 
 **Curso:** PROGRAMACIÓN WEB II · **Código:** 30690 · **Periodo:** 202620
 **Evaluación:** PA1 — Proceso de Aprendizaje 1 (Sesiones 1 a 4) · **Ponderación:** 15%
-**Docente:** [COMPLETAR] · **Sección:** [COMPLETAR] · **Fecha:** [COMPLETAR]
+**Docente:** WILDER JULIO ESPINOZA BRAVO · **Fecha:** 22 DE SEPTIEMBRE 2026
 
 **Video público de YouTube:** [PEGAR AQUÍ EL ENLACE]
 
