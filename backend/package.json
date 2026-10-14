@@ -1,0 +1,19 @@
+{
+  "name": "gestion-solicitudes-api",
+  "version": "1.0.0",
+  "description": "API REST de la Plataforma de Gestión de Solicitudes Académicas (PA2)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
