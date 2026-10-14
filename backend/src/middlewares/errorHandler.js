@@ -8,6 +8,22 @@ function errorHandler(err, req, res, next) {
     return res.status(400).json({ ok: false, mensaje: 'El cuerpo de la solicitud no es un JSON válido' });
   }
 
+  // Errores de validación del esquema Mongoose (campos faltantes, enum inválido, etc.)
+  if (err.name === 'ValidationError') {
+    const mensajes = Object.values(err.errors).map((e) => e.message);
+    return res.status(400).json({ ok: false, mensaje: 'Datos no válidos', errores: mensajes });
+  }
+
+  // ID con formato inválido (CastError)
+  if (err.name === 'CastError') {
+    return res.status(400).json({ ok: false, mensaje: 'El ID proporcionado no es válido' });
+  }
+
+  // Clave duplicada
+  if (err.code === 11000) {
+    return res.status(409).json({ ok: false, mensaje: 'Ya existe un registro con esos datos' });
+  }
+
   const status = err.status || 500;
 
   if (status === 500) {
