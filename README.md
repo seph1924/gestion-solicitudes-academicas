@@ -4,7 +4,9 @@
 **Evaluación:** PA2 — Proceso de Aprendizaje 2 (Sesiones 5 a 7: Node.js, Express, MongoDB y autenticación)
 **Docente:** WILDER JULIO ESPINOZA BRAVO · **Fecha:** [12/10/2026]
 
-
+LINK DE VIDEOS:
+parte 1: https://www.youtube.com/watch?v=ZTDaZv8q6Vo
+parte 2: https://www.youtube.com/watch?v=GbTN6F2Z1VE
 ---
 
 ## Integrantes y participación
