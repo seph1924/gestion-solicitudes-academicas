@@ -1,8 +1,9 @@
 const app = require('./app');
 const { port, nodeEnv } = require('./config/env');
+const connectDB = require('./config/db');
 
-// Punto de entrada: levanta el servidor HTTP.
-// Aquí el integrante 3 agregará la conexión a MongoDB antes de app.listen.
-app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port} (${nodeEnv})`);
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`Servidor escuchando en http://localhost:${port} (${nodeEnv})`);
+  });
 });

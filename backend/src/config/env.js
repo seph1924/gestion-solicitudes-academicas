@@ -5,5 +5,6 @@ require('dotenv').config();
 module.exports = {
   port: process.env.PORT || 3000,
   nodeEnv: process.env.NODE_ENV || 'development',
-  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:4200'
+  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:4200',
+  mongodbUri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/gestion_solicitudes'
 };
