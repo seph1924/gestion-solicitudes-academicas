@@ -1,22 +1,21 @@
-# Plataforma de Gestión de Solicitudes Académicas — PA1
+# Plataforma de Gestión de Solicitudes Académicas — PA2 (Backend)
 
 **Curso:** PROGRAMACIÓN WEB II · **Código:** 30690 · **Periodo:** 202620
-**Evaluación:** PA1 — Proceso de Aprendizaje 1 (Sesiones 1 a 4) · **Ponderación:** 15%
-**Docente:** WILDER JULIO ESPINOZA BRAVO · **Fecha:** 22 DE SEPTIEMBRE 2026
+**Evaluación:** PA2 — Proceso de Aprendizaje 2 (Sesiones 5 a 7: Node.js, Express, MongoDB y autenticación)
+**Docente:** WILDER JULIO ESPINOZA BRAVO · **Fecha:** [12/10/2026]
 
-**Video público de YouTube:** https://www.youtube.com/watch?v=9sY_BqzZnpw
-**Capturas de pantalla de solución: https://drive.google.com/drive/folders/1-oZWopQ94TOUHaV6HZl7bC8OWf-NwUzW?usp=sharing
+
 ---
 
 ## Integrantes y participación
 
 | # | Nombre completo | Rol | Participación |
 |---|-----------------|-----|---------------|
-| 1 | Josep Palacios | Configuración del repositorio y modelos | Setup del proyecto Angular y definición inicial de `models/solicitud.model.ts` |
-| 2 | Danny Posadas (`dposadas08`) | Arquitectura de componentes | Actividad 2: `SolicitudService`, `ListaSolicitudesComponent` y `NavbarComponent` |
-| 3 | Samuel Pacheco | Base tipada, formularios y API REST | Actividad 1: `utils/`; Actividad 3: `SolicitudFormComponent` y rutas; Actividad 4: `SolicitudApiService` y `EstudiantesApiComponent` |
-| 4 | [Juan Cáceres] | [Búsqueda y filtrado de solicitudes] | [Desarrollo de un componente Angular independiente para buscar solicitudes por nombre o código y filtrarlas por estado, utilizando data binding, directivas, TypeScript/ES6+ y RouterModule.] |
-| 5 | Miguel Villafuerte | Diseño de Interfaz y Maquetación Frontend | Refactorización de vistas de usuario (`ListaSolicitudesComponent` y `SolicitudFormComponent`), modularización de estilos en archivos CSS desacoplados, maquetación del formulario en grid a dos columnas y binding dinámico de clases con `[ngClass]`. |
+| 1 | [Samuel Pacheco] | Servidor Node.js y Express | Configuración de Node.js y Express, servidor HTTP, middleware (JSON, CORS para Angular, logger), rutas principales, variables de entorno y manejo general de errores. |
+| 2 | [Danny Posadas] | API REST y CRUD | Endpoints `GET` (listar y por ID), `POST`, `PUT` y `DELETE` de solicitudes, validación de datos recibidos y respuestas de error HTTP. |
+| 3 | [Josep Palacios]| Persistencia de datos (MongoDB y Mongoose) | Configuración de MongoDB, conexión con Mongoose, esquema y modelo `Solicitud` con validaciones, servicio con las operaciones de guardar, consultar, actualizar y eliminar, manejo de errores de Mongoose y verificación de la persistencia tras reiniciar el servidor. |
+| 4 | [Juan Caceres] | Integración con Angular | Servicio Angular con `HttpClient`, conexión del formulario con `POST`, listado con `GET`, actualización y eliminación desde la interfaz, y manejo de errores y mensajes. |
+| 5 | [Miguel Villafuerte] | Pruebas, integración final y documentación | Pruebas de endpoints con herramienta HTTP, verificación de casos correctos y de error, comprobación de persistencia, integración de ramas de Git, evidencias y README. |
 
 Todos los integrantes conocen la solución completa y participaron en la revisión final.
 
@@ -24,276 +23,209 @@ Todos los integrantes conocen la solución completa y participaron en la revisi�
 
 ## Descripción
 
-Frontend Angular tipado para una plataforma de gestión de solicitudes académicas. En esta primera
-etapa permite **registrar, navegar y visualizar** información de solicitudes (rectificación de nota,
-reserva de matrícula, carta de presentación y examen extemporáneo), sin implementar todavía el
-backend de Node.js, que corresponde a las sesiones 5 a 7.
+API backend para la plataforma de gestión de solicitudes académicas (rectificación de nota, reserva de
+matrícula, carta de presentación y examen extemporáneo). En esta segunda etapa se reemplazan los datos de
+prueba del frontend Angular de la PA1 por una API construida con **Node.js y Express**, que guarda la
+información en **MongoDB** mediante **Mongoose**.
 
 ## Objetivo
 
-Demostrar dominio de JavaScript moderno y TypeScript, componentes en Angular 16, formularios
-reactivos con navegación, y consumo de una API REST con HttpClient, manteniendo una solución
-modular y justificando las decisiones técnicas.
+Construir un servidor HTTP organizado con rutas, middleware y operaciones CRUD, y conectarlo a una base de
+datos MongoDB para que las solicitudes persistan entre ejecuciones del servidor, dejando el backend listo
+para ser consumido por el frontend Angular.
 
 ---
 
 ## Desarrollo
 
-El trabajo se repartió por actividades y se integró mediante ramas y Pull Requests sobre un mismo
+El trabajo se repartió por responsabilidades y se integró mediante ramas y Pull Requests sobre el mismo
 repositorio.
 
-1. **Base del repositorio.** Se generó el proyecto con Angular CLI 16.2.16 y se definieron los
-   modelos del caso (`SolicitudAcademica`, `TipoSolicitud`, `EstadoSolicitud`). Angular 16 requiere
-   Node 16.14+ o 18.10+, por lo que el equipo trabajó sobre Node 18 LTS.
-2. **Interfaz y servicio.** Sobre esos modelos se construyó el servicio inyectable con datos de
-   prueba, el listado de solicitudes y la barra de navegación (rama `feature/ui-lista-solicitudes`).
-3. **Utilidades tipadas.** Se extrajeron a `utils/` las funciones puras y las reglas de validación,
-   para no duplicar lógica entre el listado, el formulario y la vista de la API.
-4. **Registro y navegación.** Se añadió el formulario reactivo reutilizando esas validaciones, y se
-   configuraron las rutas con `RouterModule` usando los mismos nombres que ya enlazaba el navbar.
-5. **Consumo remoto.** Se agregó un segundo servicio con `HttpClient` que adapta la respuesta de una
-   API pública al modelo del caso.
-6. **Integración.** Cada rama se verificó con `ng build` antes de abrir su Pull Request, y las
-   actividades posteriores se construyeron sobre la rama de la Actividad 2 para evitar conflictos en
-   `app.module.ts` y en el servicio compartido.
+1. **Base del servidor.** Se configuró Node.js y Express separando la configuración de la aplicación
+   (`app.js`) del arranque (`server.js`), con middleware, variables de entorno y manejo centralizado de
+   errores.
+2. **Persistencia.** Se conectó el backend con MongoDB usando Mongoose, se definió el modelo `Solicitud` a
+   partir de la interfaz `SolicitudAcademica` del frontend y se creó un servicio con las operaciones de base
+   de datos.
+3. **API REST.** Se implementaron los endpoints CRUD que usan ese servicio, con validación de datos y
+   códigos HTTP adecuados.
+4. **Integración con Angular.** El frontend de la PA1 pasó a consumir esta API en lugar de datos ficticios.
+5. **Pruebas e integración final.** Se probaron los endpoints (casos correctos y de error), se comprobó la
+   persistencia reiniciando el servidor y se integraron las ramas.
 
 ---
 
 ## Solución propuesta
 
-### Actividad 1 — Base tipada y modular
+### Actividad 1 — Servidor HTTP, rutas, middleware y CRUD
 
-**Estructura**
+- **Express** expone la API bajo el prefijo `/api`.
+- **Middleware:** `express.json()` para leer el cuerpo de las peticiones, **CORS** configurado para el
+  servidor de desarrollo de Angular (`http://localhost:4200`), un **logger** de solicitudes, un manejador
+  de rutas inexistentes (404 en JSON) y un **manejador centralizado de errores**.
+- **Variables de entorno** con `dotenv`, centralizadas en `config/env.js`. El archivo `.env` no se sube al
+  repositorio; se incluye `.env.example` como plantilla.
 
-```
-src/app/
-├── models/
-│   ├── solicitud.model.ts         # interfaces y enums del caso
-│   └── solicitud-api.model.ts     # forma cruda de la API externa
-└── utils/
-    ├── helpers.ts                 # funciones puras
-    └── validaciones.ts            # reglas de validación reutilizables
-```
+**Endpoints**
 
-**Qué se hizo y por qué**
+| Método | Ruta | Descripción | Respuesta esperada |
+|--------|------|-------------|--------------------|
+| GET | `/api/health` | Estado del servidor | 200 |
+| GET | `/api/solicitudes` | Lista todas las solicitudes | 200 + arreglo |
+| GET | `/api/solicitudes/:id` | Obtiene una solicitud por ID | 200, 404 si no existe, 400 si el ID es inválido |
+| POST | `/api/solicitudes` | Registra una solicitud | 201, 400 si los datos no son válidos |
+| PUT | `/api/solicitudes/:id` | Actualiza una solicitud | 200, 404, 400 |
+| DELETE | `/api/solicitudes/:id` | Elimina una solicitud | 200 o 204, 404 |
 
-- `SolicitudAcademica` se definió como **interfaz**, porque es la entidad del caso, y los estados y
-  tipos como **enums de TypeScript** (`EstadoSolicitud`, `TipoSolicitud`) en lugar de `string`, para
-  que el compilador rechace valores inválidos antes de ejecutar.
-- Se separó `models` de `utils` para que componentes y servicios importen los tipos sin duplicarlos.
-- Se usaron **funciones puras**: `cambiarEstado` y `contarPorEstado` devuelven objetos nuevos con
-  *spread* en vez de modificar los originales, así una función no cambia datos sin que se note.
-- `Record<EstadoSolicitud, string>` obliga a cubrir todos los estados al escribir sus etiquetas: si
-  se agrega uno nuevo, TypeScript avisa que falta.
-- Las validaciones viven en `validaciones.ts` para que el formulario reactivo de la Actividad 3 las
-  reutilice en lugar de reescribirlas.
-- **Recursos ES6+ utilizados:** arrow functions, destructuring, spread, template literals, parámetros
-  por defecto, `map`, `filter`, `find`, `reduce` y módulos `import`/`export`; de TypeScript, `Omit`,
-  `Record` y enums.
+### Actividad 2 — Persistencia con MongoDB y Mongoose
 
-### Actividad 2 — Arquitectura de componentes Angular
+- **Conexión** (`config/db.js`): `mongoose.connect()` con la URI leída desde `env.js`. El servidor HTTP
+  solo se levanta **después** de conectar con la base de datos; si MongoDB no está disponible, el servidor
+  no arranca y muestra el error.
+- **Modelo `Solicitud`** (`models/Solicitud.js`), alineado con la interfaz de Angular:
 
-**Estructura**
+  | Campo | Tipo | Reglas |
+  |-------|------|--------|
+  | `codigoEstudiante` | String | Obligatorio |
+  | `nombreEstudiante` | String | Obligatorio, mínimo 3 caracteres |
+  | `tipoSolicitud` | String | Obligatorio; solo `Rectificación de Nota`, `Reserva de Matrícula`, `Carta de Presentación`, `Examen Extemporáneo` |
+  | `motivo` | String | Obligatorio, máximo 500 caracteres |
+  | `estado` | String | `PENDIENTE` (por defecto), `EN_PROCESO`, `APROBADO`, `RECHAZADO` |
+  | `fechaCreacion` / `fechaActualizacion` | Date | Generadas automáticamente (`timestamps`) |
 
-```
-src/app/
-├── services/
-│   └── solicitud.service.ts
-└── components/
-    ├── lista-solicitudes/
-    └── navbar/
-```
-
-**Qué se hizo y por qué**
-
-- **Inyección de dependencias:** el servicio usa `@Injectable({ providedIn: 'root' })` para estar
-  disponible en toda la aplicación sin declararlo en el módulo, y se inyecta en el constructor del
-  componente. Así el servicio maneja los datos y el componente solo los pinta.
-- **Directivas estructurales:** la tabla se construye con `*ngFor` y los casos vacíos con `*ngIf`. Se
-  usó la sintaxis tradicional (`*ngFor="let item of lista"`) y no el nuevo control de flujo `@for`,
-  porque esa sintaxis no está soportada en Angular 16.
-- **Data binding:** interpolación (`{{ solicitud.nombreEstudiante }}`) para las celdas y property
-  binding con `[ngClass]` para colorear el estado.
-- El servicio devuelve **copias** del arreglo (`[...this.solicitudes]`) para que los componentes no
-  modifiquen su estado interno.
-- El `NavbarComponent` concentra la navegación, de modo que ninguna vista repite los enlaces.
-
-### Actividad 3 — Formulario reactivo, validaciones y navegación
-
-**Estructura**
-
-```
-src/app/
-├── components/
-│   └── solicitud-form/
-└── app-routing.module.ts
-```
-
-**Qué se hizo y por qué**
-
-- `SolicitudFormComponent` separa el registro del componente principal y mantiene la estructura
-  modular. Se construye con `FormBuilder` para centralizar las reglas del formulario.
-- **Validaciones aplicadas:**
-  - `Validators.required` en nombre, código, correo, tipo y motivo, para impedir envíos incompletos.
-  - `Validators.minLength(3)` en el nombre.
-  - `Validators.email` en el correo, con mensaje específico cuando el formato no es válido.
-  - `Validators.minLength(10)` en el motivo.
-  - **Validador propio** `codigoValidator`, que envuelve `validarCodigo()` de la Actividad 1 para
-    exigir el formato del código de estudiante (letra opcional + 6 a 10 dígitos).
-- Se usa `markAllAsTouched()` cuando el formulario es inválido, para mostrar todos los mensajes
-  pendientes después de intentar registrar.
-- Al registrar, el componente delega en `SolicitudService.agregarSolicitud()` — el mismo servicio de
-  la Actividad 2 — y navega por código con `Router.navigate(['/solicitudes'])`.
-- **Navegación:** `RouterModule.forRoot()` define las rutas, `routerLink` navega sin recargar la
-  aplicación, `routerLinkActive` resalta la pestaña actual y `router-outlet` en `app.component.html`
-  renderiza el componente de la ruta activa.
-
-**Rutas configuradas**
-
-| Ruta | Componente | Descripción |
-|------|------------|-------------|
-| `/` | — | Redirige a `/solicitudes` |
-| `/solicitudes` | `ListaSolicitudesComponent` | Listado de solicitudes registradas |
-| `/nueva-solicitud` | `SolicitudFormComponent` | Formulario de registro |
-| `/estudiantes-api` | `EstudiantesApiComponent` | Datos traídos de la API REST |
-| `**` | — | Ruta comodín, redirige a `/solicitudes` |
-
-### Actividad 4 — Consumo de una API REST con HttpClient
-
-**Estructura**
-
-```
-src/app/
-├── models/
-│   └── solicitud-api.model.ts            (forma "cruda" que devuelve la API)
-├── services/
-│   └── solicitud-api.service.ts          (HttpClient + mapeo al modelo del caso)
-└── components/
-    └── estudiantes-api/
-```
-
-**Qué se hizo y por qué**
-
-- Se importó `HttpClientModule` en `AppModule`, que es lo que habilita las peticiones HTTP en toda la
-  aplicación.
-- Se usó **JSONPlaceholder** (`https://jsonplaceholder.typicode.com/users`): API pública y gratuita,
-  sin registro ni credenciales, cumpliendo la indicación de no publicar tokens ni accesos.
-- El `HttpClient` vive **dentro de un servicio** que devuelve `Observable<SolicitudAcademica[]>`. El
-  componente solo se suscribe; la vista no sabe de dónde vienen los datos.
-- La respuesta se **adapta al modelo del caso** con el operador `map` de RxJS: cada usuario de la API
-  se convierte en una `SolicitudAcademica`, reutilizando el modelo tipado de la Actividad 1. Así las
-  columnas son coherentes con el resto de la aplicación en lugar de mostrar campos genéricos.
-- Se manejan los estados de la petición con banderas `cargando` y `error`, más un botón **Recargar**,
-  para dar retroalimentación mientras llega la respuesta o si algo falla.
-- **No se implementó backend:** solo se consume una API que ya existe, porque Node.js corresponde a
-  las sesiones 5 a 7.
+- **Servicio** (`services/solicitud.service.js`): `crear`, `listar`, `obtenerPorId`, `actualizar` y
+  `eliminar`. La actualización usa `new: true` y `runValidators: true` para devolver el documento
+  modificado y aplicar las reglas del esquema también al editar. Si un método devuelve `null`, el
+  controlador responde 404.
+- **Errores de Mongoose** (`middlewares/errorHandler.js`): `ValidationError` y `CastError` responden 400;
+  una clave duplicada (código 11000) responde 409.
+- **Nota para el frontend:** MongoDB identifica cada documento con `_id` (texto), por lo que la interfaz
+  de Angular usa `_id: string` en lugar de `id: number`.
 
 ---
 
 ## Cómo ejecutar o revisar
 
-**Requisitos:** Node.js 18.x LTS (Angular 16 requiere Node 16.14+ o 18.10+) y npm.
+**Requisitos:** Node.js LTS, npm y **MongoDB Community Server** corriendo en `127.0.0.1:27017`
+(opcional: MongoDB Compass para ver los datos).
 
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/seph1924/gestion-solicitudes-academicas.git
-cd gestion-solicitudes-academicas
+cd gestion-solicitudes-academicas/backend
 
-# 2. Instalar dependencias
+# 2. Crear el archivo de variables de entorno
+copy .env.example .env        # Mac/Linux: cp .env.example .env
+
+# 3. Instalar dependencias
 npm install
 
-# 3. Levantar el servidor de desarrollo
-npm start
+# 4. Levantar el servidor
+npm run dev
 ```
 
-Luego abrir **http://localhost:4200/** en el navegador.
+En consola debe aparecer:
 
-**Otros comandos de verificación**
+```
+MongoDB conectado: 127.0.0.1/gestion_solicitudes
+Servidor escuchando en http://localhost:3000 (development)
+```
 
-```bash
-npm run build                            # Compilación de producción
-npx tsc --noEmit -p tsconfig.app.json    # Verificación de tipado estricto
-npm test                                 # Pruebas unitarias con Karma/Jasmine
+La base `gestion_solicitudes` se crea automáticamente al guardar el primer documento.
+
+**Variables de entorno (`.env.example`)**
+
+```
+PORT=3000
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:4200
+MONGODB_URI=mongodb://127.0.0.1:27017/gestion_solicitudes
 ```
 
 **Recorrido sugerido para la revisión**
 
-1. **Solicitudes** (`/solicitudes`) — tabla generada con `*ngFor` a partir del servicio inyectado.
-2. **Nueva Solicitud** (`/nueva-solicitud`) — enviar el formulario vacío para ver las validaciones,
-   luego completarlo correctamente y comprobar que navega al listado con la solicitud agregada.
-3. **Estudiantes API** (`/estudiantes-api`) — datos traídos con `HttpClient` y mapeados al modelo;
-   probar el botón *Recargar*.
+1. `GET http://localhost:3000/api/health` — el servidor responde.
+2. `POST /api/solicitudes` con un JSON válido — responde 201 con `_id`.
+3. `POST /api/solicitudes` con campos faltantes — responde 400 con los mensajes de validación.
+4. `GET /api/solicitudes` — lista las solicitudes guardadas.
+5. `PUT` y `DELETE` sobre un `_id` — se reflejan en la base.
+6. **Persistencia:** detener el servidor (`Ctrl + C`), volver a iniciarlo con `npm run dev` y repetir el
+   `GET`: los datos siguen guardados.
+7. Verificar los documentos en Compass: base `gestion_solicitudes` → colección `solicitudes`.
+
+Ejemplo de cuerpo para `POST`:
+
+```json
+{
+  "codigoEstudiante": "2024001",
+  "nombreEstudiante": "Juan Pérez",
+  "tipoSolicitud": "Reserva de Matrícula",
+  "motivo": "Motivos personales"
+}
+```
 
 ---
 
 ## Estructura del proyecto
 
 ```
-src/app/
-├── models/                        # Actividad 1 — tipos del dominio
-│   ├── solicitud.model.ts
-│   └── solicitud-api.model.ts
-├── utils/                         # Actividad 1 — funciones puras y validaciones
-│   ├── helpers.ts
-│   └── validaciones.ts
-├── services/                      # Actividades 2 y 4 — acceso a datos
-│   ├── solicitud.service.ts
-│   └── solicitud-api.service.ts
-├── components/
-│   ├── navbar/                    # Actividad 2 — navegación
-│   ├── lista-solicitudes/         # Actividad 2 — listado
-│   ├── solicitud-form/            # Actividad 3 — formulario reactivo
-│   └── estudiantes-api/           # Actividad 4 — vista de la API
-├── app-routing.module.ts          # Actividad 3 — rutas
-├── app.module.ts                  # Declaración e imports de módulos
-└── app.component.*                # Shell: navbar y router-outlet
+backend/
+├── src/
+│   ├── config/
+│   │   ├── env.js                 # Variables de entorno centralizadas
+│   │   └── db.js                  # Conexión a MongoDB con Mongoose
+│   ├── models/
+│   │   └── Solicitud.js           # Esquema y modelo Mongoose
+│   ├── services/
+│   │   └── solicitud.service.js   # Operaciones de base de datos
+│   ├── controllers/               # Lógica de los endpoints CRUD
+│   ├── routes/                    # Rutas bajo /api
+│   ├── middlewares/               # logger, notFound, errorHandler
+│   ├── app.js                     # Configuración de Express
+│   └── server.js                  # Arranque: conecta a MongoDB y levanta el servidor
+├── .env.example
+├── .gitignore
+└── package.json
+docs/
+└── capturas/                      # Evidencias de ejecución
 ```
 
 ---
 
 ## Evidencias
 
-> Guardar las capturas en la carpeta `docs/` del repositorio y enlazarlas aquí.
+> Las capturas están en la carpeta `docs/capturas/` del repositorio.
 
 | # | Evidencia | Archivo |
 |---|-----------|---------|
-| 1 | Compilación exitosa (`ng build`) | `docs/01-build.png` |
-| 2 | Verificación de tipado estricto (`tsc --noEmit`) | `docs/02-tsc.png` |
-| 3 | Aplicación ejecutándose (`ng serve` + navegador) | `docs/03-serve.png` |
-| 4 | Listado de solicitudes con datos del servicio | `docs/04-listado.png` |
-| 5 | Formulario con **entradas inválidas** (mensajes de error visibles) | `docs/05-form-invalido.png` |
-| 6 | Formulario con **entrada válida** y registro exitoso | `docs/06-form-valido.png` |
-| 7 | Navegación entre rutas (URL visible en la barra) | `docs/07-rutas.png` |
-| 8 | Datos obtenidos de la API REST | `docs/08-api-externa.png` |
-| 9 | Petición HTTP en la pestaña *Network* del navegador | `docs/09-network.png` |
+| 1 | Consola con "MongoDB conectado" y servidor escuchando | `docs/capturas/01-consola-conexion.png` |
+| 2 | Compass: base `gestion_solicitudes` y documento guardado | `docs/capturas/02-compass-documento.png` |
+| 3 | Persistencia entre ejecuciones (`Documentos guardados: 1`) | `docs/capturas/03-persistencia.png` |
+| 4 | `POST` exitoso (201) | `docs/capturas/04-post.png` |
+| 5 | `GET` de la lista | `docs/capturas/05-get.png` |
+| 6 | `PUT` y `DELETE` reflejados en la base | `docs/capturas/06-put-delete.png` |
+| 7 | Error de validación (400) | `docs/capturas/07-error-400.png` |
+| 8 | `GET` después de reiniciar el servidor | `docs/capturas/08-persistencia-api.png` |
+| 9 | Frontend Angular conectado a la API | `docs/capturas/09-angular.png` |
 
 ---
 
 ## Conclusiones
 
-- **Definir los tipos antes que la interfaz** ahorró errores: al ser enums y no `string`, el
-  compilador detectó valores inválidos en tiempo de desarrollo, y `Record<...>` obligó a cubrir todos
-  los estados al escribir las etiquetas de la vista.
-- **La inyección de dependencias separó responsabilidades** de forma concreta: los componentes no
-  saben de dónde vienen los datos, y por eso la vista de la API externa reutiliza el mismo modelo y
-  las mismas utilidades que la vista local sin duplicar código.
-- **Centralizar las validaciones** permitió que la misma regla sirva como función pura en la lógica y
-  como validador de Angular en el formulario reactivo, sin duplicar el criterio.
-- **Trabajar en Angular 16 impone límites concretos:** la sintaxis de control de flujo `@if`/`@for`
-  no está soportada, por lo que se usaron `*ngIf` y `*ngFor`. Verificar la versión antes de copiar
-  ejemplos evita errores de compilación.
-- **Coordinar las ramas importa tanto como el código:** al construir las Actividades 3 y 4 sobre la
-  rama de la Actividad 2 en lugar de una copia paralela, se evitaron componentes duplicados con el
-  mismo selector y conflictos en `app.module.ts`.
-- **La solución queda preparada para las sesiones 5 a 7:** como el acceso a datos está aislado en
-  servicios, sustituir la API de práctica por el backend propio de Node.js solo implicará cambiar la
-  URL y el mapeo, sin tocar los componentes.
+- **La persistencia cambió la naturaleza de la aplicación:** con MongoDB y Mongoose las solicitudes se
+  conservan entre ejecuciones del servidor, algo que no era posible con los datos de prueba de la PA1.
+- **El esquema actúa como primera barrera de validación:** los campos obligatorios, los `enum` y los
+  límites de longitud impiden guardar datos inconsistentes, y `runValidators` mantiene esas reglas al
+  actualizar.
+- **Separar conexión, modelo y servicio facilitó el trabajo en equipo:** cada integrante pudo trabajar su
+  parte sin pisar el código de los demás, y los controladores no dependen de detalles de Mongoose.
+- **Centralizar la configuración y los errores** (`env.js` y `errorHandler`) permitió que toda la API
+  responda con el mismo formato y que no se publiquen credenciales en el repositorio.
+- **El identificador `_id` de MongoDB exige coordinar el modelo del frontend:** acordar el contrato de
+  datos con el equipo de Angular evitó retrabajo en la integración.
+- **Coordinar las ramas y probar la integración completa** (incluyendo reiniciar el servidor) fue tan
+  importante como cada módulo por separado.
 
 ---
 
 ## Video de exposición
-
-**Video público de YouTube:** [PEGAR AQUÍ EL ENLACE]
-
-En el video participan todos los integrantes con cámara prendida, explicando el problema, el
-procedimiento seguido, las decisiones técnicas y su relación con los contenidos de las sesiones 1 a 4.
