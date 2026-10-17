@@ -36,6 +36,25 @@ exports.obtenerSolicitud = async (req, res) => {
   }
 };
 
+exports.parcharSolicitud = async (req, res) => {
+  try {
+    const solicitud = await service.parchar(
+      req.params.id,
+      req.body
+    );
+
+    if (!solicitud) {
+      return res.status(404).json({
+        mensaje: 'Solicitud no encontrada'
+      });
+    }
+
+    res.status(200).json(solicitud);
+  } catch (error) {
+    res.status(400).json({ mensaje: error.message });
+  }
+};
+
 exports.actualizarSolicitud = async (req, res) => {
   try {
     const solicitud = await service.actualizar(
