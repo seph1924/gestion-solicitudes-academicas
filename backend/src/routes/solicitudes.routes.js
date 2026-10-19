@@ -9,6 +9,8 @@ router.get('/', solicitudController.listarSolicitudes);
 router.get('/:id', solicitudController.obtenerSolicitud);
 // Registrar una solicitud
 router.post('/', solicitudController.crearSolicitud);
+// Parchar una solicitud
+router.patch('/:id', solicitudController.parcharSolicitud);
 // Actualizar una solicitud
 router.put('/:id', solicitudController.actualizarSolicitud);
 // Eliminar una solicitud
