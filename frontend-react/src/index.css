@@ -1,0 +1,73 @@
+/* Estilos globales y variables de diseño.
+   Paleta tomada de la versión Angular (PA1) para mantener la identidad visual. */
+:root {
+  --color-primario: #0f172a;
+  --color-primario-hover: #1e293b;
+  --color-acento: #2563eb;
+  --color-fondo: #f1f5f9;
+  --color-superficie: #ffffff;
+  --color-borde: #e2e8f0;
+  --color-texto: #0f172a;
+  --color-texto-suave: #64748b;
+
+  --estado-pendiente-bg: #fef3c7;
+  --estado-pendiente-fg: #92400e;
+  --estado-proceso-bg: #dbeafe;
+  --estado-proceso-fg: #1e40af;
+  --estado-aprobado-bg: #dcfce7;
+  --estado-aprobado-fg: #166534;
+  --estado-rechazado-bg: #fee2e2;
+  --estado-rechazado-fg: #991b1b;
+
+  --radio: 8px;
+  --sombra: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --ancho-max: 1100px;
+
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-fondo);
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--color-texto);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Grilla reutilizable para tarjetas */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.grilla-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}

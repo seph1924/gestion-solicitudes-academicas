@@ -1,0 +1,83 @@
+.navbar {
+  background: var(--color-primario);
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar__contenido {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navbar__marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.navbar__logo {
+  background: var(--color-acento);
+  border-radius: 6px;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.85rem;
+}
+
+.navbar__menu {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.navbar__enlace {
+  text-decoration: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.navbar__enlace:hover,
+.navbar__enlace.active {
+  background: var(--color-primario-hover);
+  color: #ffffff;
+}
+
+.navbar__toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid #334155;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* Menú desplegable en móviles */
+@media (max-width: 720px) {
+  .navbar__toggle {
+    display: block;
+  }
+
+  .navbar__menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 0.75rem;
+  }
+
+  .navbar__menu--abierto {
+    display: flex;
+  }
+}
