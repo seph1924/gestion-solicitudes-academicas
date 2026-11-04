@@ -5,11 +5,13 @@ import SolicitudCard from './components/ui/SolicitudCard';
 import Boton from './components/ui/Boton';
 import { solicitudesIniciales, ESTADOS_SOLICITUD } from './data/solicitudes';
 import { ETIQUETAS_ESTADO, contarPorEstado } from './utils/formato';
+import { useDispatch } from 'react-redux';
+import { registrarAuditoria } from './store/notificacionesSlice';
+import { PanelNotificacionesRedux } from './components/ui/PanelNotificacionesRedux';
 
-// Vista provisional que muestra los componentes visuales de la Persona 1.
-// Persona 3 reemplazará este contenido por las rutas (React Router) y
-// Persona 2 moverá los datos a useState/useEffect.
 function App() {
+  const dispatch = useDispatch();
+
   return (
     <Layout>
       <PageHeader
@@ -17,6 +19,8 @@ function App() {
         subtitulo="Consulta y organiza las solicitudes registradas por los estudiantes."
         accion={<Boton>+ Nueva solicitud</Boton>}
       />
+
+      <PanelNotificacionesRedux />
 
       <section className="grilla-stats">
         <StatCard titulo="Total" valor={solicitudesIniciales.length} />
@@ -35,7 +39,40 @@ function App() {
           <SolicitudCard
             key={solicitud.id}
             solicitud={solicitud}
-            acciones={<Boton variante="secundario">Ver detalle</Boton>}
+            acciones={
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() =>
+                    dispatch(
+                      registrarAuditoria({
+                        accion: 'REVISION',
+                        estudiante: solicitud.nombreEstudiante,
+                        tramite: solicitud.tipoSolicitud,
+                        idSolicitud: solicitud.codigoEstudiante,
+                      })
+                    )
+                  }
+                >
+                  <Boton variante="secundario">Auditar</Boton>
+                </span>
+                <span
+                  style={{ cursor: 'pointer' }}
+                  onClick={() =>
+                    dispatch(
+                      registrarAuditoria({
+                        accion: 'APROBADO',
+                        estudiante: solicitud.nombreEstudiante,
+                        tramite: solicitud.tipoSolicitud,
+                        idSolicitud: solicitud.codigoEstudiante,
+                      })
+                    )
+                  }
+                >
+                  <Boton>Aprobar</Boton>
+                </span>
+              </div>
+            }
           />
         ))}
       </section>
