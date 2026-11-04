@@ -14,13 +14,15 @@
 
 ## 1. Integrantes y participación
 
-| # | Integrante | Rol | Participación |
+## 1. Integrantes y participación
 
-| 1 | Samuel Pacheco | Estructura y diseño de React | Configuración del frontend con React y Vite, organización de componentes, estructura visual y estilos de la aplicación. |
-| 2 | Danny Posadas | Funcionalidades y Hooks | Desarrollo de funcionalidades, formularios y gestión de solicitudes mediante Hooks como `useState` y `useEffect`. |
-| 3 | Juan Cáceres | Navegación con React Router | Configuración de rutas, navegación mediante `NavLink`, organización del `Layout` con `Outlet` e integración de la pantalla principal. |
-| 4 | Josep Palacios | Estado global con Context API | Desarrollo de la gestión de estado global mediante Context API, Provider y consumo del contexto. |
-| 5 | Miguel Villafuerte | Redux, integración y documentación | Introducción a Redux, revisión de la integración del proyecto, pruebas y documentación. |
+| N.º | Integrante | Rol | Participación |
+|:---:|---|---|---|
+| 1 | **Samuel Pacheco** | Estructura y diseño de React | Configuración del frontend con React y Vite, organización de componentes, estructura visual y estilos de la aplicación. |
+| 2 | **Danny Posadas** | Funcionalidades y Hooks | Desarrollo de funcionalidades, formularios y gestión de solicitudes mediante Hooks como `useState` y `useEffect`. |
+| 3 | **Juan Cáceres** | Navegación con React Router | Configuración de rutas, navegación mediante `NavLink`, organización del `Layout` con `Outlet` e integración de la pantalla principal. |
+| 4 | **Josep Palacios** | Estado global con Context API | Desarrollo de la gestión de estado global mediante Context API, Provider y consumo del contexto. |
+| 5 | **Miguel Villafuerte** | Redux, integración y documentación | Introducción a Redux, revisión de la integración del proyecto, pruebas y documentación. |
 
 Todos los integrantes son responsables del resultado final y deben conocer la solución completa presentada.
 
