@@ -4,6 +4,8 @@
   position: sticky;
   top: 0;
   z-index: 10;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .navbar__contenido {
@@ -16,6 +18,7 @@
   flex-wrap: wrap;
 }
 
+/* LOGO */
 .navbar__marca {
   display: flex;
   align-items: center;
@@ -23,48 +26,63 @@
   font-weight: 700;
   font-size: 1.05rem;
   text-decoration: none;
+  color: #ffffff;
 }
 
 .navbar__logo {
   background: var(--color-acento);
-  border-radius: 6px;
-  padding: 0.25rem 0.45rem;
+  border-radius: 7px;
+  padding: 0.4rem 0.55rem;
   font-size: 0.85rem;
 }
 
+/* MENÚ DE NAVEGACIÓN */
 .navbar__menu {
   display: flex;
-  gap: 0.25rem;
+  align-items: center;
+  gap: 0.4rem;
 }
 
+/* ENLACES */
 .navbar__enlace {
+  display: inline-block;
+  background: transparent;
+  border: none;
+  box-shadow: none;
   text-decoration: none;
-  padding: 0.45rem 0.8rem;
-  border-radius: 6px;
+  padding: 0.65rem 1rem;
+  border-radius: 7px;
   font-size: 0.9rem;
   font-weight: 500;
   color: #cbd5e1;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.navbar__enlace:hover,
-.navbar__enlace.active {
+.navbar__enlace:hover {
   background: var(--color-primario-hover);
   color: #ffffff;
 }
 
+/* ENLACE ACTIVO */
+.navbar__enlace.active {
+  background: var(--color-acento);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* BOTÓN HAMBURGUESA */
 .navbar__toggle {
   display: none;
   background: transparent;
-  border: 1px solid #334155;
+  border: 1px solid #475569;
   color: #ffffff;
-  border-radius: 6px;
-  padding: 0.3rem 0.6rem;
+  border-radius: 7px;
+  padding: 0.4rem 0.7rem;
   font-size: 1.1rem;
   cursor: pointer;
 }
 
-/* Menú desplegable en móviles */
+/* MENÚ PARA MÓVILES */
 @media (max-width: 720px) {
   .navbar__toggle {
     display: block;
@@ -73,11 +91,18 @@
   .navbar__menu {
     display: none;
     flex-direction: column;
+    align-items: stretch;
     width: 100%;
     padding-top: 0.75rem;
   }
 
   .navbar__menu--abierto {
     display: flex;
+  }
+
+  .navbar__enlace {
+    display: block;
+    width: 100%;
+    text-align: left;
   }
 }

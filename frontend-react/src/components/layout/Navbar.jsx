@@ -10,7 +10,7 @@ const OPCIONES_MENU = [
   { ruta: '/resumen', texto: 'Resumen' }
 ];
 
-function Navbar() {
+function Navbar({ onNavegar, vistaActual }) {
   // Controla el menú desplegable en pantallas pequeñas
   const [menuAbierto, setMenuAbierto] = useState(false);
 
@@ -34,14 +34,19 @@ function Navbar() {
 
         <nav className={`navbar__menu ${menuAbierto ? 'navbar__menu--abierto' : ''}`}>
           {OPCIONES_MENU.map((opcion) => (
-            <a
+            <button
               key={opcion.ruta}
-              href={opcion.ruta}
-              className="navbar__enlace"
-              onClick={() => setMenuAbierto(false)}
+              type="button"
+              className={`navbar__enlace ${
+                vistaActual === opcion.ruta ? 'activo' : ''
+              }`}
+              onClick={() => {
+                onNavegar(opcion.ruta);
+                setMenuAbierto(false);
+              }}
             >
               {opcion.texto}
-            </a>
+            </button>
           ))}
         </nav>
       </div>

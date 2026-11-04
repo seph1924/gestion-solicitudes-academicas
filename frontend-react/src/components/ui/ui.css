@@ -1,4 +1,5 @@
-/* ---------- Encabezado de página ---------- */
+/* ENCABEZADO DE PÁGINA */
+
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -21,7 +22,8 @@
   font-size: 0.9rem;
 }
 
-/* ---------- Tarjeta de solicitud ---------- */
+/* TARJETAS */
+
 .tarjeta {
   background: var(--color-superficie);
   border: 1px solid var(--color-borde);
@@ -88,10 +90,13 @@
 
 .tarjeta__acciones {
   display: flex;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-/* ---------- Badge de estado ---------- */
+/* BADGES */
+
 .badge {
   font-size: 0.72rem;
   font-weight: 600;
@@ -120,7 +125,8 @@
   color: var(--estado-rechazado-fg);
 }
 
-/* ---------- Indicadores ---------- */
+/* ESTADÍSTICAS */
+
 .stat {
   background: var(--color-superficie);
   border: 1px solid var(--color-borde);
@@ -141,12 +147,24 @@
   color: var(--color-texto-suave);
 }
 
-.stat--pendiente { border-left-color: var(--estado-pendiente-fg); }
-.stat--en_proceso { border-left-color: var(--estado-proceso-fg); }
-.stat--aprobado { border-left-color: var(--estado-aprobado-fg); }
-.stat--rechazado { border-left-color: var(--estado-rechazado-fg); }
+.stat--pendiente {
+  border-left-color: var(--estado-pendiente-fg);
+}
 
-/* ---------- Botones ---------- */
+.stat--en_proceso {
+  border-left-color: var(--estado-proceso-fg);
+}
+
+.stat--aprobado {
+  border-left-color: var(--estado-aprobado-fg);
+}
+
+.stat--rechazado {
+  border-left-color: var(--estado-rechazado-fg);
+}
+
+/* BOTONES */
+
 .boton {
   border-radius: 6px;
   font-size: 0.85rem;
@@ -181,7 +199,12 @@
   color: var(--estado-rechazado-fg);
 }
 
-/* ---------- Estado vacío ---------- */
+.boton--peligro:hover {
+  background: #fecaca;
+}
+
+/* ESTADO VACÍO */
+
 .estado-vacio {
   text-align: center;
   padding: 2.5rem 1rem;
@@ -189,4 +212,316 @@
   border-radius: var(--radio);
   color: var(--color-texto-suave);
   background: var(--color-superficie);
+}
+
+/* FORMULARIO */
+
+.panel-formulario {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--sombra);
+}
+
+.panel-formulario h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.3rem;
+}
+
+.panel-formulario form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.panel-formulario form > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.panel-formulario label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-texto);
+  margin-bottom: 0.4rem;
+  align-self: auto;
+}
+
+/* INPUTS, SELECTS Y TEXTAREA */
+
+.panel-formulario input,
+.panel-formulario select,
+.panel-formulario textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.75rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 7px;
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.panel-formulario input:focus,
+.panel-formulario select:focus,
+.panel-formulario textarea:focus {
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.panel-formulario input::placeholder,
+.panel-formulario textarea::placeholder {
+  color: var(--color-texto-suave);
+}
+
+/* SELECT DEL FORMULARIO: FLECHA ORIGINAL */
+
+.panel-formulario select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364748b' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 16px;
+}
+
+.panel-formulario textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.panel-formulario .campo-completo {
+  grid-column: 1 / -1;
+}
+
+.panel-formulario button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 0.5rem;
+}
+
+/* FILTROS */
+
+.filtros {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 10px;
+}
+
+.filtros input,
+.filtros select {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 7px;
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.filtros input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* SELECT DE FILTROS: FLECHA ORIGINAL */
+
+.filtros select {
+  min-width: 190px;
+  width: auto;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364748b' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 16px;
+}
+
+.filtros input:focus,
+.filtros select:focus {
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* SELECT DE ACCIONES */
+
+.tarjeta__acciones select {
+  width: auto;
+  max-width: 150px;
+  padding: 0.45rem 2rem 0.45rem 0.6rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: 0.8rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%2364748b' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 14px;
+}
+
+/* INTERACCIÓN GENERAL DE SELECTS */
+
+.panel-formulario select:hover,
+.filtros select:hover,
+.tarjeta__acciones select:hover {
+  border-color: var(--color-acento);
+}
+
+.panel-formulario select:focus,
+.filtros select:focus,
+.tarjeta__acciones select:focus {
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* OPCIONES NATIVAS */
+
+select option {
+  background-color: #ffffff;
+  color: var(--color-texto);
+}
+
+/* DESPLEGABLE PERSONALIZADO */
+
+@supports (appearance: base-select) {
+
+  .panel-formulario select,
+  .filtros select,
+  .tarjeta__acciones select {
+    appearance: base-select;
+    -webkit-appearance: base-select;
+  }
+
+  /* Ocultar la flecha nativa del navegador */
+  .panel-formulario select::picker-icon,
+  .filtros select::picker-icon,
+  .tarjeta__acciones select::picker-icon {
+    display: none;
+  }
+
+  /* Mantener el desplegable estilizado */
+  .panel-formulario select::picker(select),
+  .filtros select::picker(select),
+  .tarjeta__acciones select::picker(select) {
+    appearance: base-select;
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: 9px;
+    padding: 0.35rem;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  }
+
+  .panel-formulario select option,
+  .filtros select option,
+  .tarjeta__acciones select option {
+    padding: 0.65rem 0.8rem;
+    border-radius: 6px;
+    background: var(--color-superficie);
+    color: var(--color-texto);
+  }
+
+  .panel-formulario select option:hover,
+  .filtros select option:hover,
+  .tarjeta__acciones select option:hover {
+    background: var(--color-fondo);
+  }
+
+  .panel-formulario select option:checked,
+  .filtros select option:checked,
+  .tarjeta__acciones select option:checked {
+    background: var(--color-acento);
+    color: #ffffff;
+  }
+}
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+
+  .panel-formulario {
+    padding: 1rem;
+  }
+
+  .panel-formulario form {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-formulario .campo-completo {
+    grid-column: 1;
+  }
+
+  .panel-formulario button {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtros input,
+  .filtros select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tarjeta__pie {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tarjeta__acciones {
+    width: 100%;
+  }
+
+  .tarjeta__acciones select {
+    max-width: 100%;
+  }
+}
+
+@supports (appearance: base-select) {
+  .panel-formulario select,
+  .filtros select,
+  .tarjeta__acciones select {
+    position: relative;
+  }
+
+  .panel-formulario select::picker(select),
+  .filtros select::picker(select),
+  .tarjeta__acciones select::picker(select) {
+    position-area: block-end;
+    position-try-fallbacks: none;
+    margin-top: 4px;
+  }
 }
