@@ -1,8 +1,8 @@
+
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
-// Opciones del menú principal.
-// Persona 3 (React Router): reemplazar <a href> por <NavLink to> usando estas mismas rutas.
 const OPCIONES_MENU = [
   { ruta: '/', texto: 'Inicio' },
   { ruta: '/solicitudes', texto: 'Solicitudes' },
@@ -11,16 +11,15 @@ const OPCIONES_MENU = [
 ];
 
 function Navbar() {
-  // Controla el menú desplegable en pantallas pequeñas
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   return (
     <header className="navbar">
       <div className="navbar__contenido">
-        <a href="/" className="navbar__marca">
+        <NavLink to="/" end className="navbar__marca">
           <span className="navbar__logo">SA</span>
           <span>Solicitudes Académicas</span>
-        </a>
+        </NavLink>
 
         <button
           type="button"
@@ -34,14 +33,15 @@ function Navbar() {
 
         <nav className={`navbar__menu ${menuAbierto ? 'navbar__menu--abierto' : ''}`}>
           {OPCIONES_MENU.map((opcion) => (
-            <a
+            <NavLink
               key={opcion.ruta}
-              href={opcion.ruta}
+              to={opcion.ruta}
+              end={opcion.ruta === '/'}
               className="navbar__enlace"
               onClick={() => setMenuAbierto(false)}
             >
               {opcion.texto}
-            </a>
+            </NavLink>
           ))}
         </nav>
       </div>

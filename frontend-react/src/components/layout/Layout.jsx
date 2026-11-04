@@ -1,14 +1,17 @@
+
+import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import './Layout.css';
 
-// Estructura común de todas las vistas: navbar arriba, contenido al centro y footer abajo.
-// Persona 3 (React Router): puede reemplazar {children} por <Outlet /> en una ruta padre.
-function Layout({ children }) {
+// Estructura común de todas las vistas
+function Layout() {
   return (
     <div className="layout">
       <Navbar />
-      <main className="layout__contenido">{children}</main>
+      <main className="layout__contenido">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );
