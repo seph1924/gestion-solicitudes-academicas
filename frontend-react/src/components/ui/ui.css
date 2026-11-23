@@ -255,3 +255,103 @@
   font-size: 0.8rem;
   color: var(--color-texto-suave);
 }
+
+/* ---------- Estado de peticiones a la API ---------- */
+.peticion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem;
+  border-radius: var(--radio);
+  border: 1px solid var(--color-borde);
+  background: var(--color-superficie);
+  margin-bottom: 1.5rem;
+}
+
+.peticion--cargando {
+  justify-content: flex-start;
+  color: var(--color-texto-suave);
+}
+
+.peticion--error {
+  background: var(--estado-rechazado-bg);
+  border-color: #fecaca;
+  color: var(--estado-rechazado-fg);
+}
+
+.peticion__detalle {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+}
+
+.peticion__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-borde);
+  border-top-color: var(--color-acento);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peticion__spinner { animation-duration: 2s; }
+}
+
+/* ---------- Avisos de resultado ---------- */
+.aviso {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radio);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  max-width: 750px;
+}
+
+.aviso--exito {
+  background: var(--estado-aprobado-bg);
+  color: var(--estado-aprobado-fg);
+}
+
+.aviso--error {
+  background: var(--estado-rechazado-bg);
+  color: var(--estado-rechazado-fg);
+}
+
+.aviso__lista {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.aviso__cerrar {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* ---------- Errores de campo en formularios ---------- */
+.formulario-error {
+  font-size: 0.8rem;
+  color: var(--estado-rechazado-fg);
+}
+
+.formulario-grupo [aria-invalid='true'] {
+  border-color: var(--estado-rechazado-fg);
+}
+
+.boton:disabled,
+.formulario-grupo select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

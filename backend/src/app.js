@@ -10,7 +10,7 @@ const app = express();
 
 // 1. Middlewares globales: se ejecutan en este orden para cada solicitud
 app.use(logger);                          // Registra cada solicitud en consola
-app.use(cors({ origin: corsOrigin }));    // Permite que Angular (localhost:4200) consuma la API
+app.use(cors({ origin: corsOrigin }));    // Permite que Angular y React (Vite) consuman la API
 app.use(express.json());                  // Convierte el body JSON en req.body
 
 // 2. Rutas de la API, todas bajo el prefijo /api
