@@ -4,6 +4,7 @@ import PageHeader from '../components/ui/PageHeader';
 import StatCard from '../components/ui/StatCard';
 import SolicitudCard from '../components/ui/SolicitudCard';
 import Boton from '../components/ui/Boton';
+import EstadoPeticion from '../components/ui/EstadoPeticion';
 
 import { ESTADOS_SOLICITUD } from '../data/solicitudes';
 import {
@@ -15,7 +16,8 @@ import { useDispatch } from 'react-redux';
 import { registrarAuditoria } from '../store/notificacionesSlice';
 import { PanelNotificacionesRedux } from '../components/ui/PanelNotificacionesRedux';
 
-function HomePage({ solicitudes }) {
+function HomePage({ api }) {
+  const { solicitudes, cargando, error, recargar } = api;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,6 +35,7 @@ function HomePage({ solicitudes }) {
 
       <PanelNotificacionesRedux />
 
+      <EstadoPeticion cargando={cargando} error={error} onReintentar={recargar}>
       {/* ESTADÍSTICAS */}
       <section className="grilla-stats">
         <StatCard
@@ -99,6 +102,7 @@ function HomePage({ solicitudes }) {
           ))
         )}
       </section>
+      </EstadoPeticion>
     </>
   );
 }
