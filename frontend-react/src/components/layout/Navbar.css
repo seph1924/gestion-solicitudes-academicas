@@ -81,3 +81,36 @@
     display: flex;
   }
 }
+
+/* Botón cerrar sesión */
+.navbar__logout {
+  background: var(--color-acento);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.8rem;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.navbar__logout:hover {
+  background: #1d4ed8;
+}
+
+.navbar__logout:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 720px) {
+  .navbar__logout {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.5rem;
+    text-align: left;
+  }
+}

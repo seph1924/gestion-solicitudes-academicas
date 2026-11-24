@@ -1,0 +1,148 @@
+
+.login {
+  min-height: 100vh;
+  background: var(--color-fondo);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.login__tarjeta {
+  width: 100%;
+  max-width: 430px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+
+.login__encabezado {
+  background: var(--color-primario);
+  color: #ffffff;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.login__logo {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem;
+  background: var(--color-acento);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.login__encabezado h1 {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.login__encabezado p {
+  margin: 0.5rem 0 0;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+}
+
+.login__contenido {
+  padding: 1.75rem;
+}
+
+.login__contenido h2 {
+  font-size: 1.25rem;
+}
+
+.login__descripcion {
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.login__password {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.login__password input {
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+}
+
+.login__password:focus-within {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 1px;
+}
+
+.login__mostrar {
+  background: transparent;
+  border: none;
+  padding: 0 0.7rem;
+  color: var(--color-acento);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.login__contenido form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login__contenido form > .boton {
+  width: 100%;
+  padding: 0.75rem;
+}
+
+.login__registro {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+}
+
+.login__registro a {
+  color: var(--color-acento);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login__registro a:hover {
+  text-decoration: underline;
+}
+
+.login__footer {
+  margin-top: 1.5rem;
+  color: var(--color-texto-suave);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.login__cargando {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-texto-suave);
+}
+
+@media (max-width: 480px) {
+  .login__contenido {
+    padding: 1.25rem;
+  }
+
+  .login__encabezado {
+    padding: 1.5rem 1rem;
+  }
+}

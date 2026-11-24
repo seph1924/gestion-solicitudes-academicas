@@ -1,6 +1,6 @@
-
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useUsuario } from '../../context/UsuarioContext';
 import './Navbar.css';
 
 const OPCIONES_MENU = [
@@ -12,11 +12,36 @@ const OPCIONES_MENU = [
 
 function Navbar() {
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [cerrandoSesion, setCerrandoSesion] = useState(false);
+
+  const { usuario, logout } = useUsuario();
+  const navigate = useNavigate();
+
+  const manejarLogout = async () => {
+    if (cerrandoSesion) return;
+
+    setCerrandoSesion(true);
+    setMenuAbierto(false);
+
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    } finally {
+      // El contexto limpia el usuario incluso si falla el servidor.
+      navigate('/login', { replace: true });
+      setCerrandoSesion(false);
+    }
+  };
 
   return (
     <header className="navbar">
       <div className="navbar__contenido">
-        <NavLink to="/" end className="navbar__marca">
+        <NavLink
+          to="/"
+          end
+          className="navbar__marca"
+        >
           <span className="navbar__logo">SA</span>
           <span>Solicitudes Académicas</span>
         </NavLink>
@@ -31,7 +56,11 @@ function Navbar() {
           ☰
         </button>
 
-        <nav className={`navbar__menu ${menuAbierto ? 'navbar__menu--abierto' : ''}`}>
+        <nav
+          className={`navbar__menu ${
+            menuAbierto ? 'navbar__menu--abierto' : ''
+          }`}
+        >
           {OPCIONES_MENU.map((opcion) => (
             <NavLink
               key={opcion.ruta}
@@ -43,6 +72,17 @@ function Navbar() {
               {opcion.texto}
             </NavLink>
           ))}
+
+          {usuario && (
+            <button
+              type="button"
+              className="navbar__logout"
+              onClick={manejarLogout}
+              disabled={cerrandoSesion}
+            >
+              {cerrandoSesion ? 'Cerrando sesión...' : 'Cerrar sesión'}
+            </button>
+          )}
         </nav>
       </div>
     </header>
