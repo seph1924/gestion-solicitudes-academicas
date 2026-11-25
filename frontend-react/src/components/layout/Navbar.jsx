@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useUsuario } from '../../context/UsuarioContext';
+import { logger } from '../../utils/logger';
 import './Navbar.css';
 
 const OPCIONES_MENU = [
@@ -26,7 +27,7 @@ function Navbar() {
     try {
       await logout();
     } catch (error) {
-      console.error('Error al cerrar sesión:', error);
+      logger.error('Error al cerrar sesión', { mensaje: error.message });
     } finally {
       // El contexto limpia el usuario incluso si falla el servidor.
       navigate('/login', { replace: true });

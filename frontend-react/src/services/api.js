@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import { logger } from '../utils/logger';
 
 // URL base del backend
 export const API_URL =
@@ -39,7 +40,7 @@ const api = axios.create({
 // Interceptor de solicitudes
 api.interceptors.request.use((config) => {
   if (import.meta.env.DEV) {
-    console.info(
+    logger.debug(
       `[API] -> ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`
     );
   }
@@ -51,7 +52,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (respuesta) => {
     if (import.meta.env.DEV) {
-      console.info(
+      logger.debug(
         `[API] <- ${respuesta.status} ${respuesta.config.url}`
       );
     }
@@ -86,7 +87,9 @@ api.interceptors.response.use(
     // Error HTTP
     const { status, data } = error.response;
 
-    console.error(
+    // 5xx = fallo del servidor (error); 4xx = problema de la solicitud o de la sesión (warn)
+    const registrar = status >= 500 ? logger.error : logger.warn;
+    registrar(
       `[API] <- ${status} ${error.config?.url}`,
       data
     );

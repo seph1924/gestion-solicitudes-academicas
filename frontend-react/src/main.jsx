@@ -12,14 +12,22 @@ import { store } from './store';
 // Contexto de autenticación
 import { UsuarioProvider } from './context/UsuarioContext';
 
+// Producción: captura de errores y métricas
+import ErrorBoundary from './components/ui/ErrorBoundary.jsx';
+import { iniciarMonitoreo } from './utils/monitoreo';
+
+iniciarMonitoreo();
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <UsuarioProvider>
-          <App />
-        </UsuarioProvider>
-      </BrowserRouter>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <BrowserRouter>
+          <UsuarioProvider>
+            <App />
+          </UsuarioProvider>
+        </BrowserRouter>
+      </Provider>
+    </ErrorBoundary>
   </StrictMode>
 );

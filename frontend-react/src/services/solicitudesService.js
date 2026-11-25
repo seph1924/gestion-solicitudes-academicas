@@ -1,5 +1,6 @@
 import api, { ApiError } from './api';
 import { esSolicitudValida, normalizarSolicitud } from '../utils/validaciones';
+import { logger } from '../utils/logger';
 
 // Capa de servicio: una función por cada endpoint de /api/solicitudes.
 // Los componentes no conocen URLs ni Axios; solo llaman a estas funciones.
@@ -25,7 +26,7 @@ export async function listarSolicitudes() {
   // Se descartan los elementos que no cumplen el formato y se avisa en consola
   const validas = data.filter(esSolicitudValida);
   if (validas.length !== data.length) {
-    console.warn(`[API] Se descartaron ${data.length - validas.length} solicitudes con formato inválido.`);
+    logger.warn(`[API] Se descartaron ${data.length - validas.length} solicitudes con formato inválido.`);
   }
   return validas.map(normalizarSolicitud);
 }
