@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Reporte del analizador de bundle (npm run analyze)
+stats.html

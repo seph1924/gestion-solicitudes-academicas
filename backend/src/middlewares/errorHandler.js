@@ -1,4 +1,5 @@
 const { nodeEnv } = require('../config/env');
+const log = require('../utils/logger');
 
 // Middleware de errores: Express lo reconoce porque recibe 4 parámetros (err, req, res, next).
 // Cualquier error lanzado en una ruta (o pasado con next(err)) termina aquí.
@@ -27,7 +28,7 @@ function errorHandler(err, req, res, next) {
   const status = err.status || 500;
 
   if (status === 500) {
-    console.error(err);
+    log.error('Error interno no controlado', { mensaje: err.message, pila: err.stack });
   }
 
   res.status(status).json({
