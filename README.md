@@ -8,7 +8,7 @@
 **Unidades:** Construcción de Aplicaciones Frontend con React.js · Despliegue y Seguridad en Aplicaciones Web  
 **Docente:** WILDER JULIO ESPINOZA BRAVO  
 **Fecha:** 24/11/2026
-**Video público de YouTube:** 
+**Video público de YouTube: https://youtu.be/QZ2odHTcRBY**
 
 **URL del frontend desplegado en Vercel:** https://gestion-solicitudes-academicas.vercel.app/solicitudes
 ---
